@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/bootstrap.css">
+  <title>Cadastrar</title>
+</head>
+<title>Login 04</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet" />
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+
+<link rel="stylesheet" href="/bootstrap.css" />
+</head>
+
+<body>
+  <section class="ftco1-section">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-12 col-lg-10">
+          <div class="wrap d-md-flex">
+            <div class="img" srcstyle="
+                background-image: url(/imagens/Faça\ agora\ o\ seu\ login!.png);
+              "><img src="./imagens/cachorro cadastro.png" alt="">
+            </div>
+
+            
+            <div class="login-wrap p-5 p-md-5">
+              <div class="d-flex">
+                <div class="w-100">
+                  <h3 class="mb-2">Cadastrar um pet</h3>
+                </div>
+              </div>
+
+              <form action="/cadastrarPet" class="signin-form" method="POST">
+                <div class="form-group mb-0">
+                  <label class="label" for="nome">Nome</label>
+                  <input type="text" class="form-control" placeholder="Digite aqui..." name="nome" required />
+                </div>
+
+                <div class="form-group mb-0">
+                  <label class="label" for="raca">Raça</label>
+                  <input type="text" class="form-control" placeholder="Digite aqui..." name="raca" required />
+                </div>
+                <div class="form-group mb-0">
+                  <label class="label" for="tamanho">Tamanho</label>
+                  <input type="text" class="form-control" placeholder="Digite aqui..." name="tamanho" required />
+                </div>
+
+                <div class="form-group mb-0">
+                  <label class="label" for="peso">Peso</label>
+                  <input type="text" class="form-control" placeholder="Digite aqui..." name="peso" required />
+                </div>
+
+                <div class="form-group mb-0">
+                  <label class="label" for="caracteristicas">Caracteristicas</label>
+                  <input type="text" class="form-control" placeholder="Digite aqui..." name="caracteristicas"
+                    required />
+                </div>
+
+                <div class="form-group mt-3">
+                  <button type="submit" class="btn btn-sm btn-secondary" style="background-color: #000;">
+                    Criar
+                  </button>
+                </div>
+              </form>
+
+              <form action="/upload" method="post" enctype="multipart/form-data">
+                <label for="imagem">Selecione uma imagem:</label>
+                <input type="file" name="file" id="imagem">
+                <input type="submit" value="Enviar"
+                  class="btn btn-sm btn-secondary dropdown-toggle dropdown-toggle-split"
+                  style="background-color: #000;">
+              </form>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script src="js/jquery.min.js"></script>
+  <script src="js/popper.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/main.js"></script>
+</body>
+
+</html>
+
+<body></body>
+
+</html>

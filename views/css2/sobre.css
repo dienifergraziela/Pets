@@ -1,0 +1,183 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+nav img{
+    width: 25vh; 
+    margin-left: 3vw;
+}
+
+@media only screen and (min-width: 769px){    
+
+    .navbar-nav{
+        margin-left: 63vw;
+    }
+
+    .nav-item{
+        margin-left: 1vw;
+    }
+
+    /**/
+
+    #sobre{
+        margin-top: 15vh;
+    }
+
+    div.col-md-8{
+        width: 55vw;
+    }
+
+    div.card-body{
+        width: 43vw;
+        margin-left: 13vw;
+        font-size: 1.2rem;
+        font-weight: 600;
+    }
+
+
+    div.container.text-center{
+        margin-left: 43.85vw;
+        margin-top: 20vh;
+    }
+    #conteudos div.container.text-center{
+        height: 73vh;
+    }
+    
+    button.btn.btn-primary{
+        margin-top: 8vh;
+        margin-left: 5vw;
+        width: 40vw;
+    }
+}
+
+@media only screen and (max-width: 768px){   
+    
+    /*button.navbar-toggler.collapsed{
+       nav 
+    }*/
+
+    span.navbar-toggler-icon{
+        background-color: #4180AB;
+    }
+
+    #comoAjudamos-imgCats{
+        display: none;
+    }
+
+    #conteudos div.container.text-center h3{
+        margin-left: 0;
+    }
+ 
+    
+
+}
+
+/**/
+
+#sobre{
+    border: none;
+}
+
+#sobre h3{
+    margin-bottom: 3vh;
+    color: #4180AB;
+}
+
+/**/
+div.container.text-center h3{
+    text-align: center;
+}
+
+div.container.text-center{
+    position: relative;
+    background-color: #8AB3CF;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #fff;
+}
+
+#conteudos div.container.text-center h3{
+    text-align: center;
+}
+
+div.container.text-center img{
+    width: 20vh;
+}
+
+div.container.text-center h3{
+    margin-bottom: 3vh;
+    color: #176585;
+    margin-top: 4vh;
+    text-align: initial;
+    font-weight: 600;
+}
+
+div.container.text-center p{
+    margin-bottom: 1vh;
+}
+
+/**/
+#comoAjudamos-imgCats img{
+    width: 700px;
+    float: left;
+    display: inline;
+    margin-top: 12vh;
+}
+
+/**/
+
+#conteudos div.col{
+    color: #000;
+}
+
+button.btn.btn-primary{
+    border-radius: 0;
+    position: relative;
+    background-color: #176585;
+    height: 10vh;
+    font-size: 1.3rem;
+    text-decoration: underline;
+}
+
+/**/
+/*
+footer{
+    background-color: #260D33;
+    height: 26vh;
+}*/
+
+footer p{
+    float: right;
+    color: #fff;
+}
+
+footer img{
+    width: 5vw;
+    margin-bottom: 7vh;
+}
+/**/
+
+  
+.imagem1 {
+    position: absolute;
+    z-index: 1;
+}
+  
+.imagem2 {
+    position: absolute;
+    z-index: 2;
+}
+/**/
+#comoFunciona{
+    margin-top: 6vh;
+}
+
+#comoFunciona p{
+    text-align: justify;
+}
+
+#comoFunciona h3{
+    color: #4180AB;
+}
