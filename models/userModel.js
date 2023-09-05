@@ -11,13 +11,14 @@ class User{
     static async autenticar(email, senha){
         const md5 = require('md5');
         let sql = `SELECT * FROM user WHERE email='${email}' AND senha='${md5(senha)}';`
-        // console.log(sql)
         return await Database.query(sql);
     }
 
     static async listarUser(){
-        return await Database.query(sql);
+        let users = await Database.query("SELECT * FROM user");
+        return users;
     }
+
 }
 
 module.exports = User

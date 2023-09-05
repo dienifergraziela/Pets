@@ -14,7 +14,6 @@ async function getAll(req, res) {
 
 function addPet(req, res) {
     const { id_animal, nome, raca, tamanho, peso, caracteristicas, caminho_imagem, user_id_user } = req.body;
-
     const pet = new Pet(id_animal, nome, raca, tamanho, peso, caracteristicas, caminho_imagem, user_id_user);
     pet.save().then(() => console.log("pet cadastrado com sucesso!"));
     res.redirect('/');
@@ -44,10 +43,8 @@ async function getPetById(req, res) {
             console.error('Erro ao obter o pet tarefa:', err);
             return res.status(500).send('Erro ao obter o pet do banco de dados.');
         }
-        return res.render('editarPet', { pet }); // Renderiza o formulário de edição com os dados da tarefa
+        return res.render('editarPet', { pet });
     });
 }
-
-
 
 module.exports = { getAll, addPet, deletePet, updatePet, getPetById }

@@ -17,9 +17,11 @@ class Pet {
         return pets;
     }
 
-    async save() {
+    async save(imagePath) {
+        // let caminho_imagem = imagePath;
+        console.log(imagePath);
         let id_user = await Database.query('select id_user from user');
-        let resp = await Database.query(`INSERT INTO animal (nome, raca, tamanho, peso, caracteristicas, caminho_imagem, user_id_user ) VALUES ('${this.nome}', '${this.raca}', '${this.tamanho}', '${this.peso}' , '${this.caracteristicas}', "sem", "1" );`);
+        let resp = await Database.query(`INSERT INTO animal (nome, raca, tamanho, peso, caracteristicas, caminho_imagem, user_id_user ) VALUES ('${this.nome}', '${this.raca}', '${this.tamanho}', '${this.peso}' , '${this.caracteristicas}', '${imagePath}', "1" );`);
         console.log(resp);
         this.id = resp.insertId;
     }
@@ -38,6 +40,7 @@ class Pet {
     }
 
     static async updatePet(id_animal) {
+        let pets = await Database.query("SELECT * FROM animal");
         const resp = await Database.query(`UPDATE animal SET nome = ?, raca = ?, tamanho = ?, peso = ?, caracteristicas = ? WHERE id_animal ${id_animal}`)
         if (resp) {
             if (resp.affectedRows > 0) {

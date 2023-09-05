@@ -1,6 +1,4 @@
 const mysql = require("mysql2/promise");
-// const { DB_DATABASE } = require("../config");
-
 async function connect() {
     if (global.connection && global.connection.state !== 'disconnected') {
         return global.connection;
@@ -12,7 +10,7 @@ async function connect() {
         password: '',
         database: 'mvc_pet'
     });
-    console.log("Conectou no MySQL!!");
+    console.log("conexão bem sucedida com o banco de dados!");
     global.connection = connection;
     return connection;
 }

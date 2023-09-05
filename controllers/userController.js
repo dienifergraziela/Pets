@@ -4,7 +4,7 @@ let users = [];
 
 async function getUsers(req, res){
     users = await User.listarUser();
-    res.render('users', { users });
+    res.render('perfil', { users });
 }
 
 function login(req, res){
@@ -30,7 +30,8 @@ async function autenticar(req, res){
 }
 
 async function logout(req, res){
-
+    delete req.session.user;
+    res.redirect('/login');
 }
 
 module.exports = { getUsers, login, autenticar, logout  };

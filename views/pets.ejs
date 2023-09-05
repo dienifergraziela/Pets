@@ -8,19 +8,29 @@
         integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 
     <title>Document</title>
-
-    <style>
-    </style>
+    <link rel="stylesheet" href="./css/home.css">
+    <link rel="stylesheet" href="./css/pets.css">
+    
 </head>
 
 <body>
-    <h1 class="titulo text-center" style="margin: 2vh 0;">Pets cadastrados</h1>
+    <nav>
+        <ul class="menu">
+            <li><a href="/">Home</a></li>
+            <li><a href="/pets">Pets</a></li>
+            <li><a href="/cadastrarPet">Cadastrar</a></li>
+            <li><a href="/perfil">Perfil</a></li>
+        </ul>
+    </nav>
+
+    <h1 class="titulo text-center" style="margin: 2vh 0;">Pets</h1>
     <div class="container">
         <div class="row">
             <% listaPets.forEach(function(pet) { %>
-                <div class="col-2">
-                    <div class="card" style="width: 13rem; display: block; float: left; margin: 0 15px">
-                        <img src="./imagens/fadinha.png" class="card-img-top" alt="...">
+                <div class="col">
+                    <div class="card" style="width: 15rem; display: block; float: left; margin: 0 15px">
+                        <img src="./imagens/bob.jpg" class="card-img-top" alt="...">
+
                         <div class="card-body">
                             <h5 class="card-title">
                                 <%= pet.nome %>
@@ -38,14 +48,16 @@
                                 <%= pet.caracteristicas %>
                             </p>
                         </div>
-                        <form action="/pet/<%= pet.id_animal %>/excluir" method="POST"
-                            style="display: inline_block;">
-                            <button type="submit">Excluir</button>
+                        <div style="display: flex; justify-content: center; margin-bottom: 2vh;">
+                            <form action="/pet/<%= pet.id_animal %>/excluir" method="POST"
+                            style="display: block; float: left;">
+                            <button type="submit" class="btn btn-dark">Excluir</button>
                         </form>
-                        <a href="/editarPet">
-                            <button>editar</button>
+                        <a href="/editarPet" style="display: block; float: left; margin-left: 1vw;">
+                            <button class="btn btn-dark">editar</button>
                         </a>
-                        <!--editar aqui botão -->
+                        </div>
+                        
                     </div>
                 </div>
 

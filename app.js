@@ -1,11 +1,13 @@
 const express = require('express');
 const path = require('path');
-const userController = require('./controllers/userController');
-const petController = require('./controllers/petController');
 const expressLayouts = require('express-ejs-layouts');
 const session = require('express-session');
-const cors = require('cors');
+
+const userController = require('./controllers/userController');
+const petController = require('./controllers/petController');
+
 require('dotenv').config();
+const multer = require('multer');
 
 const app = express();
 const port = 3000;
@@ -53,37 +55,30 @@ app.set('layout', './layouts/default/index.ejs');
 
 app.use(express.urlencoded({ extended: true }));
 
+app.listen(port, () => {
+    console.log(`Aplicativo rodando em http://localhost:${port}`);
+})
+
 app.get('/', (req, res) => {
     res.render('home');
 })
+
+app.post('/login', (req, res) => {
+    userController.autenticar(req, res);
+});
 
 app.get('/login', (req, res) => {
     app.set('layout', './layouts/default/login.ejs');
     userController.login(req, res);
 });
 
-app.post('/login', (req, res) => {
-    userController.autenticar(req, res);
-});
-
 app.get('/cadastrarPet', (req, res) => {
     res.render('cadastrarPet');
 });
 
-app.post('/cadastrarPet', petController.addPet);
-
-app.listen(port, () => {
-    console.log(`Aplicativo rodando em http://localhost:${port}`);
-})
-
-app.get('/perfil', (req, res) => {
-    res.render('perfil');
-})
+app.get('/perfil', userController.getUsers);
 
 app.get('/pets', petController.getAll);
-
-//
-// app.post('/pets/:id/excluir', petController.deletePet);
 
 app.post('/pet/:id_animal/excluir', (req, res) => {
     petController.deletePet(req, res);
@@ -98,3 +93,29 @@ app.get('/editarPet', (req, res) => {
 })
 
 app.get('/tarefas/:id/editar', petController.getPetById);
+
+app.post('/logout', (req, res) => {
+    userController.logout(req, res);
+});
+
+app.get('/logout', (req, res) => {
+    res.render('login');
+})
+
+//salvar imgs:
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, "uploads/");
+    },
+    filename: function (req, file, cb) {
+        cb(null, file.originalname + Date.now() + path.extname(file.originalname));
+    }
+})
+const upload = multer({ storage })
+
+app.post('/cadastrarPet', upload.single("file"), (req, res) => {
+    const imagePath = req.file.path;
+    console.log("upload realizado com sucesso!");
+    console.log(imagePath);
+    petController.addPet(req, res, imagePath);
+})

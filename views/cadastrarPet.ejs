@@ -17,20 +17,30 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
 
 <link rel="stylesheet" href="/bootstrap.css" />
+<link rel="stylesheet" href="./css/home.css">
 </head>
 
 <body>
+  <nav>
+    <ul class="menu">
+        <li><a href="/">Home</a></li>
+        <li><a href="/pets">Pets</a></li>
+        <li><a href="/cadastrarPet">Cadastrar</a></li>
+        <li><a href="/perfil">Perfil</a></li>
+    </ul>
+</nav>
+
   <section class="ftco1-section">
     <div class="container">
       <div class="row justify-content-center">
         <div class="col-md-12 col-lg-10">
           <div class="wrap d-md-flex">
-            <div class="img" srcstyle="
+            <div class="img" style="
                 background-image: url(/imagens/Faça\ agora\ o\ seu\ login!.png);
-              "><img src="./imagens/cachorro cadastro.png" alt="">
+              ">
             </div>
 
-            
+
             <div class="login-wrap p-5 p-md-5">
               <div class="d-flex">
                 <div class="w-100">
@@ -38,7 +48,7 @@
                 </div>
               </div>
 
-              <form action="/cadastrarPet" class="signin-form" method="POST">
+              <form action="/cadastrarPet" class="signin-form" method="POST" enctype="multipart/form-data">
                 <div class="form-group mb-0">
                   <label class="label" for="nome">Nome</label>
                   <input type="text" class="form-control" placeholder="Digite aqui..." name="nome" required />
@@ -64,19 +74,13 @@
                     required />
                 </div>
 
-                <div class="form-group mt-3">
-                  <button type="submit" class="btn btn-sm btn-secondary" style="background-color: #000;">
-                    Criar
-                  </button>
-                </div>
-              </form>
-
-              <form action="/upload" method="post" enctype="multipart/form-data">
                 <label for="imagem">Selecione uma imagem:</label>
                 <input type="file" name="file" id="imagem">
+                
                 <input type="submit" value="Enviar"
                   class="btn btn-sm btn-secondary dropdown-toggle dropdown-toggle-split"
                   style="background-color: #000;">
+
               </form>
 
             </div>

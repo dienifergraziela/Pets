@@ -9,8 +9,7 @@
 <body>
     <h1>Editar Pet</h1>
 
-    <% listaPets.forEach(function(pet) { %>
-        <form action="/pet/<%= pet.id_animal %>/editar" method="POST" style="display: inline_block;">
+        <form action="/pet/<%= id_animal %>/editar" method="POST" style="display: inline_block;">
             <div class="login-wrap p-5 p-md-5">
                 <div class="d-flex">
                     <div class="w-100">
@@ -54,7 +53,6 @@
 
             </div>
         </form>
-        <% }) %>
 
 
 </body>

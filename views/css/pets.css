@@ -1,0 +1,11 @@
+.col{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 3vh;
+}
+
+.card{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
