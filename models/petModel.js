@@ -18,8 +18,7 @@ class Pet {
     }
 
     async save(imagePath) {
-        // let caminho_imagem = imagePath;
-        console.log(imagePath);
+        console.log("oi:"+imagePath);
         let id_user = await Database.query('select id_user from user');
         let resp = await Database.query(`INSERT INTO animal (nome, raca, tamanho, peso, caracteristicas, caminho_imagem, user_id_user ) VALUES ('${this.nome}', '${this.raca}', '${this.tamanho}', '${this.peso}' , '${this.caracteristicas}', '${imagePath}', "1" );`);
         console.log(resp);

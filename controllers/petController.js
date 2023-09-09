@@ -12,10 +12,15 @@ async function getAll(req, res) {
     }
 }
 
-function addPet(req, res) {
+function addPet(req, res, imagePath) {
     const { id_animal, nome, raca, tamanho, peso, caracteristicas, caminho_imagem, user_id_user } = req.body;
     const pet = new Pet(id_animal, nome, raca, tamanho, peso, caracteristicas, caminho_imagem, user_id_user);
-    pet.save().then(() => console.log("pet cadastrado com sucesso!"));
+    pet.save(imagePath).then(() => console.log("pet cadastrado com sucesso!"));
+    try {
+        console.log("deu certo");
+    } catch (error) {
+        console.error('Erro ao salvar animal:', error);
+    }
     res.redirect('/');
 }
 

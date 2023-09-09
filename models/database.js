@@ -5,10 +5,11 @@ async function connect() {
     }
 
     const connection = await mysql.createConnection({
-        host: 'localhost',
-        user: 'root',
-        password: '',
-        database: 'mvc_pet'
+        host: 'sql10.freemysqlhosting.net',
+        user: 'sql10645187',
+        password: 'NdPtR6ss5F',
+        database: 'sql10645187',
+        port: 3306
     });
     console.log("conexão bem sucedida com o banco de dados!");
     global.connection = connection;

@@ -19,6 +19,7 @@ app.set(express.static(path.join(__dirname, 'public')));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "views")))
 app.use(express.static(path.join(__dirname, "views/css")))
+app.use(express.static("uploads"));
 
 app.use(session({ secret: 'rdienigz' }));
 
@@ -115,6 +116,7 @@ const upload = multer({ storage })
 
 app.post('/cadastrarPet', upload.single("file"), (req, res) => {
     const imagePath = req.file.path;
+    // const nomeImg = req.file.originalname;
     console.log("upload realizado com sucesso!");
     console.log(imagePath);
     petController.addPet(req, res, imagePath);

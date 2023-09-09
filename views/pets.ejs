@@ -10,7 +10,7 @@
     <title>Document</title>
     <link rel="stylesheet" href="./css/home.css">
     <link rel="stylesheet" href="./css/pets.css">
-    
+
 </head>
 
 <body>
@@ -29,8 +29,9 @@
             <% listaPets.forEach(function(pet) { %>
                 <div class="col">
                     <div class="card" style="width: 15rem; display: block; float: left; margin: 0 15px">
-                        <img src="./imagens/bob.jpg" class="card-img-top" alt="...">
-
+                       
+                        <img src="./<%= pet.caminho_imagem %>" class="card-img-top" alt="">
+                        
                         <div class="card-body">
                             <h5 class="card-title">
                                 <%= pet.nome %>
@@ -50,14 +51,14 @@
                         </div>
                         <div style="display: flex; justify-content: center; margin-bottom: 2vh;">
                             <form action="/pet/<%= pet.id_animal %>/excluir" method="POST"
-                            style="display: block; float: left;">
-                            <button type="submit" class="btn btn-dark">Excluir</button>
-                        </form>
-                        <a href="/editarPet" style="display: block; float: left; margin-left: 1vw;">
-                            <button class="btn btn-dark">editar</button>
-                        </a>
+                                style="display: block; float: left;">
+                                <button type="submit" class="btn btn-dark">Excluir</button>
+                            </form>
+                            <a href="/editarPet" style="display: block; float: left; margin-left: 1vw;">
+                                <button class="btn btn-dark">editar</button>
+                            </a>
                         </div>
-                        
+
                     </div>
                 </div>
 
