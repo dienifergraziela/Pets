@@ -19,9 +19,15 @@ app.set(express.static(path.join(__dirname, 'public')));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "views")))
 app.use(express.static(path.join(__dirname, "views/css")))
+
 app.use(express.static("uploads"));
 
 app.use(session({ secret: 'rdienigz' }));
+// app.use(session({
+//     secret: 'rdienigz',
+//     resave: false, 
+//     saveUninitialized: true,
+// }));
 
 app.use((req, res, next) => {
     if (!req.session.user) {
@@ -85,15 +91,12 @@ app.post('/pet/:id_animal/excluir', (req, res) => {
     petController.deletePet(req, res);
 });
 
-app.post('/pet/:id_animal/editar', (req, res) => {
-    petController.updatePet(req, res);
-})
+app.post('/pets/:id/editar', petController.updatePet);
 
 app.get('/editarPet', (req, res) => {
+    petController.updatePet(req, res);
     res.render('editarPet');
 })
-
-app.get('/tarefas/:id/editar', petController.getPetById);
 
 app.post('/logout', (req, res) => {
     userController.logout(req, res);
@@ -103,21 +106,20 @@ app.get('/logout', (req, res) => {
     res.render('login');
 })
 
-//salvar imgs:
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
         cb(null, "uploads/");
     },
     filename: function (req, file, cb) {
-        cb(null, file.originalname + Date.now() + path.extname(file.originalname));
+        const filePath = file.originalname + Date.now() + path.extname(file.originalname);
+        cb(null, filePath);
     }
 })
 const upload = multer({ storage })
 
 app.post('/cadastrarPet', upload.single("file"), (req, res) => {
-    const imagePath = req.file.path;
-    // const nomeImg = req.file.originalname;
+    const imageName = req.file.filename;
     console.log("upload realizado com sucesso!");
-    console.log(imagePath);
-    petController.addPet(req, res, imagePath);
+    console.log(imageName);
+    petController.addPet(req, res, imageName);
 })

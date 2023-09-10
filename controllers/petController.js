@@ -33,23 +33,56 @@ async function deletePet(req, res) {
 }
 
 async function updatePet(req, res) {
-    if (await Pet.updatePet(req.params.id_animal)) {
-        res.redirect('/pets');
+    const { id } = req.params;
+    const { nome, raca, tamanho, peso, caracteristicas, caminho_imagem } = req.body;
+
+    const sucessoAtualizacao = await Pet.updatePet(id, nome, raca, tamanho, peso, caracteristicas, caminho_imagem);
+
+    if (sucessoAtualizacao) {
+        res.redirect(`/pets/${id}`);
     } else {
-        res.redirect('/pets');
+        res.render('atualizacaoFalhou');
     }
+
+    const pet = await Pet.getPetById(id);
+
+    if (!pet) {
+        res.render('petNaoEncontrado');
+        return;
+    }
+    res.render('editarPet', { pet });
 }
 
-async function getPetById(req, res) {
-    const { id } = req.params;
 
-    Pet.getById(id, (err, pet) => {
-        if (err) {
-            console.error('Erro ao obter o pet tarefa:', err);
-            return res.status(500).send('Erro ao obter o pet do banco de dados.');
-        }
-        return res.render('editarPet', { pet });
-    });
+// async function updatePet(req, res) {
+//     const { id } = req.params;
+//     const { nome, raca, tamanho, peso, caracteristicas, caminho_imagem } = req.body;
+
+//     // Obtenha o objeto Pet da base de dados pelo ID
+
+
+//     // Verifique se o objeto pet existe antes de renderizar
+//     if (!pet) {
+//         // Trate o caso em que o pet não foi encontrado (por exemplo, renderize uma página de erro)
+//         res.render('petNaoEncontrado');
+//         return;
+//     }
+
+//     // Renderize a página 'editarPet' com o objeto pet
+//     res.render('editarPet', { pet });
+// }
+
+async function getPetById(req, res) {
+    if (await Pet.updatePet(req.params.id_animal)) {
+        Pet.getById(id, (err, pet) => {
+            if (err) {
+                console.error('Erro ao obter o pet:', err);
+                return res.status(500).send('Erro ao obter o pet do banco de dados.');
+            }
+            res.render('editarPet', { pet });
+            console.log(pet);
+        });
+    }
 }
 
 module.exports = { getAll, addPet, deletePet, updatePet, getPetById }
