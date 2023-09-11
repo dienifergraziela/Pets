@@ -30,13 +30,13 @@
                 <div class="col">
                     <div class="card" style="width: 15rem; display: block; float: left; margin: 0 15px">
 
-                        <img src="<%= pet.caminho_imagem %>" class="card-img-top" alt="">
+                        <img src="<%= pet.caminho_imagem %>" class="img-fluid">
 
                         <div class="card-body">
                             <h5 class="card-title">
                                 <%= pet.nome %>
                             </h5>
-                            <p class="card-text">
+                            <p class="card-text">   
                                 <%= pet.raca %>
                             </p>
                             <p class="card-text">
@@ -54,7 +54,7 @@
                                 style="display: block; float: left;">
                                 <button type="submit" class="btn btn-dark">Excluir</button>
                             </form>
-                            <a href="/editarPet" style="display: block; float: left; margin-left: 1vw;">
+                            <a href="/pets/edit/:id_animal" style="display: block; float: left; margin-left: 1vw;">
                                 <button class="btn btn-dark">editar</button>
                             </a>
                         </div>

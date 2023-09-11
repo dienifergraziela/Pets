@@ -38,9 +38,9 @@ class Pet {
         }
     }
 
-    static async updatePet(id_animal) {
-        let pets = await Database.query("SELECT * FROM animal");
-        const resp = await Database.query(`UPDATE animal SET nome = ?, raca = ?, tamanho = ?, peso = ?, caracteristicas = ? WHERE id_animal ${id_animal}`)
+    static async getPetById(id_animal) {
+        const resp = await Database.query(`SELECT * FROM animal WHERE id_animal = ${id}`);
+        console.log("sono:" + id);
         if (resp) {
             if (resp.affectedRows > 0) {
                 return true;
@@ -49,13 +49,6 @@ class Pet {
             }
         } else {
             return false;
-        }
-    }
-
-    static async getById(id_animal, callback) {
-        const resp = await Database.query('SELECT * FROM animal WHERE id_animal = ?');
-        if (resp) {
-            return callback(null, id_animal);
         }
     }
 

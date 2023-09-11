@@ -91,12 +91,12 @@ app.post('/pet/:id_animal/excluir', (req, res) => {
     petController.deletePet(req, res);
 });
 
-app.post('/pets/:id/editar', petController.updatePet);
+// app.post('/pets/:id/editar', petController.updatePet);
 
-app.get('/editarPet', (req, res) => {
-    petController.updatePet(req, res);
-    res.render('editarPet');
-})
+// app.get('/editarPet', (req, res) => {
+//     petController.updatePet(req, res);
+//     res.render('editarPet');
+// })
 
 app.post('/logout', (req, res) => {
     userController.logout(req, res);
@@ -123,3 +123,7 @@ app.post('/cadastrarPet', upload.single("file"), (req, res) => {
     console.log(imageName);
     petController.addPet(req, res, imageName);
 })
+
+app.get('/pets/edit/:id_animal', petController.getPetById);
+
+app.post('/pets/edit/:id_animal', petController.updatePet);

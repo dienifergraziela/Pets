@@ -32,56 +32,26 @@ async function deletePet(req, res) {
     }
 }
 
-async function updatePet(req, res) {
-    const { id } = req.params;
-    const { nome, raca, tamanho, peso, caracteristicas, caminho_imagem } = req.body;
-
-    const sucessoAtualizacao = await Pet.updatePet(id, nome, raca, tamanho, peso, caracteristicas, caminho_imagem);
-
-    if (sucessoAtualizacao) {
-        res.redirect(`/pets/${id}`);
-    } else {
-        res.render('atualizacaoFalhou');
+async function getPetById(req, res) {
+    if(await Pet.getPetById(req.params.id_animal)) {
+        console.log("aqui"+id_animal);
     }
-
-    const pet = await Pet.getPetById(id);
-
-    if (!pet) {
-        res.render('petNaoEncontrado');
-        return;
-    }
-    res.render('editarPet', { pet });
 }
 
-
-// async function updatePet(req, res) {
-//     const { id } = req.params;
-//     const { nome, raca, tamanho, peso, caracteristicas, caminho_imagem } = req.body;
-
-//     // Obtenha o objeto Pet da base de dados pelo ID
-
-
-//     // Verifique se o objeto pet existe antes de renderizar
-//     if (!pet) {
-//         // Trate o caso em que o pet não foi encontrado (por exemplo, renderize uma página de erro)
-//         res.render('petNaoEncontrado');
-//         return;
-//     }
-
-//     // Renderize a página 'editarPet' com o objeto pet
-//     res.render('editarPet', { pet });
-// }
-
-async function getPetById(req, res) {
-    if (await Pet.updatePet(req.params.id_animal)) {
-        Pet.getById(id, (err, pet) => {
-            if (err) {
-                console.error('Erro ao obter o pet:', err);
-                return res.status(500).send('Erro ao obter o pet do banco de dados.');
-            }
-            res.render('editarPet', { pet });
-            console.log(pet);
-        });
+async function updatePet(req, res) {
+    const id_animal = req.params.id_animal;
+    const { nome, raca, tamanho, peso, caracteristicas, caminho_imagem, user_id_user } = req.body;
+    try {
+        const updatedPet = await Pet.updatePet(id_animal, nome, raca, tamanho, peso, caracteristicas, caminho_imagem, user_id_user);
+        if (updatedPet) {
+            console.log('Pet atualizado com sucesso!');
+            res.redirect('/pets'); // Redirecionar para a lista de pets após a atualização
+        } else {
+            res.status(404).send('Pet não encontrado.');
+        }
+    } catch (error) {
+        console.error('Erro ao atualizar o pet:', error);
+        res.status(500).send('Erro ao atualizar o pet no banco de dados.');
     }
 }
 
